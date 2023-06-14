@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tweet-card/static/css/main.7acaea2f.css",
+    "main.js": "/tweet-card/static/js/main.6eae3a5f.js",
+    "index.html": "/tweet-card/index.html",
+    "main.7acaea2f.css.map": "/tweet-card/static/css/main.7acaea2f.css.map",
+    "main.6eae3a5f.js.map": "/tweet-card/static/js/main.6eae3a5f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.6eae3a5f.js"
+  ]
+}
