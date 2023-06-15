@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   CardWrapper,
   Button,
@@ -9,9 +10,40 @@ import {
 } from './TweetCard.styled';
 import logo from '../../img/logo.png';
 import picture from '../../img/picture.png';
-// import boy from '../../img/boy.png';
+import { updateFollowerCount } from 'api-services/api';
+import { formatFollowerCount } from 'helpers/formatFollowerCount';
 
 const TweetCard = ({ id, avatar, user, followers, tweets }) => {
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followerCount, setFollowerCount] = useState(followers);
+
+  useEffect(() => {
+    const savedButtonState = localStorage.getItem(`tweetCardButtonState_${id}`);
+    if (savedButtonState) {
+      setIsFollowing(savedButtonState === 'true');
+    }
+  }, [id]);
+
+  const handleFollow = async () => {
+    // Update the follower count on the server
+    if (isFollowing) {
+      setFollowerCount(prevCount => prevCount - 1);
+      await updateFollowerCount(id, followerCount - 1);
+    } else {
+      setFollowerCount(prevCount => prevCount + 1);
+      await updateFollowerCount(id, followerCount + 1);
+    }
+
+    // Update the button state and save it to local storage
+    setIsFollowing(prevFollowing => !prevFollowing);
+    localStorage.setItem(
+      `tweetCardButtonState_${id}`,
+      JSON.stringify(!isFollowing)
+    );
+  };
+
+  const formattedFollowerCount = formatFollowerCount(followerCount);
+
   return (
     <CardWrapper>
       <Logo src={logo} alt="GoIT logo" />
@@ -26,8 +58,10 @@ const TweetCard = ({ id, avatar, user, followers, tweets }) => {
 
       <ContentContainer>
         <Text style={{ marginBottom: '16px' }}>{tweets} tweets</Text>
-        <Text>{followers} Followers</Text>
-        <Button type="button">Follow</Button>
+        <Text>{formattedFollowerCount} Followers</Text>
+        <Button type="button" onClick={handleFollow} isFollowing={isFollowing}>
+          {isFollowing ? 'Following' : 'Follow'}
+        </Button>
       </ContentContainer>
     </CardWrapper>
   );

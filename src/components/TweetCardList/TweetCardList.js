@@ -39,22 +39,24 @@ const TweetCardList = () => {
       {isloading && <b>Is loading...</b>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tweets && (
-        <CardSet>
-          {tweets.map(({ id, avatar, user, followers, tweets }) => (
-            <TweetCard
-              key={id}
-              id={id}
-              avatar={avatar}
-              user={user}
-              followers={followers}
-              tweets={tweets}
-            />
-          ))}
-        </CardSet>
+        <>
+          <CardSet>
+            {tweets.map(({ id, avatar, user, followers, tweets }) => (
+              <TweetCard
+                key={id}
+                id={id}
+                avatar={avatar}
+                user={user}
+                followers={followers}
+                tweets={tweets}
+              />
+            ))}
+          </CardSet>
+          <button type="button" onClick={loadMore}>
+            Load More
+          </button>
+        </>
       )}
-      <button type="button" onClick={loadMore}>
-        Load More
-      </button>
     </>
   );
 };

@@ -61,7 +61,8 @@ export const Button = styled.button`
   margin-top: 26px;
   width: 196px;
   height: 50px;
-  background-color: #ebd8ff;
+  background-color: ${({ isFollowing }) =>
+    isFollowing ? '#5CD3A8' : '#ebd8ff'};
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 11px;
   border-color: transparent;
@@ -72,9 +73,9 @@ export const Button = styled.button`
   color: #373737;
   cursor: pointer;
 
-  &:hover,
-  &:focus {
-    background-color: #4b2a99;
+  &:hover {
+    background-color: ${({ isFollowing }) =>
+      isFollowing ? '#2C6274' : '#4b2a99'};
     color: #ebd8ff;
     border-color: #ebd8ff;
     box-shadow: 0px 0px 0px 3px rgba(235, 216, 255, 0.5);
