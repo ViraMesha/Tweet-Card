@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import TweetCard from 'components/TweetCard/TweetCard';
-import { CardSet } from './TweetCardList.styled';
+import { Button, ButtonContainer, CardSet } from './TweetCardList.styled';
 import { fetchTweets } from 'api-services/api';
+import { BackLink } from 'components/BackLink/BackLink';
 
 const TweetCardList = () => {
   const [tweets, setTweets] = useState([]);
@@ -9,6 +11,8 @@ const TweetCardList = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [isInitialRender, setIsInitialRender] = useState(true);
+  const location = useLocation();
+  const locRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     async function getTweets() {
@@ -36,6 +40,9 @@ const TweetCardList = () => {
 
   return (
     <>
+      <div>
+        <BackLink to={locRef.current}>Go back</BackLink>
+      </div>
       {isloading && <b>Is loading...</b>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {tweets && (
@@ -52,9 +59,11 @@ const TweetCardList = () => {
               />
             ))}
           </CardSet>
-          <button type="button" onClick={loadMore}>
-            Load More
-          </button>
+          <ButtonContainer>
+            <Button type="button" onClick={loadMore}>
+              Load More
+            </Button>
+          </ButtonContainer>
         </>
       )}
     </>
