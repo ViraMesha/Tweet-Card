@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import TweetCard from 'components/TweetCard/TweetCard';
 import { CardSet } from './TweetCardList.styled';
 import { fetchTweets } from 'api-services/api';
@@ -8,7 +8,7 @@ const TweetCardList = () => {
   const [isloading, setIsloading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const isInitialRender = useRef(true);
+  const [isInitialRender, setIsInitialRender] = useState(true);
 
   useEffect(() => {
     async function getTweets() {
@@ -23,12 +23,12 @@ const TweetCardList = () => {
         setIsloading(false);
       }
     }
-    if (!isInitialRender.current) {
+    if (!isInitialRender) {
       getTweets();
     } else {
-      isInitialRender.current = false;
+      setIsInitialRender(false);
     }
-  }, [page]);
+  }, [page, isInitialRender]);
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
