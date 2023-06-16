@@ -1,11 +1,11 @@
-import { Header, Link } from './AppBar.styled';
+import { Header, StyledLink } from './AppBar.styled';
 
 export const AppBar = () => {
   return (
     <Header>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/tweets">Tweets</Link>
+        <StyledLink to="/">Home</StyledLink>
+        <StyledLink to="/tweets">Tweets</StyledLink>
       </nav>
     </Header>
   );

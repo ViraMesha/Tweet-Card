@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   width: 100%;
-  margin-bottom: 56px;
   background: linear-gradient(
     114.99deg,
     #471ca9 -0.99%,
@@ -13,7 +12,7 @@ export const Header = styled.header`
   padding: 0 100px;
 `;
 
-export const Link = styled(NavLink)`
+export const StyledLink = styled(NavLink)`
   display: inline-block;
   padding: 12px;
   font-weight: 900;
