@@ -24,7 +24,7 @@ const TweetCardList = () => {
           setTweets(prevTweets => [...prevTweets, ...data]);
         }
       } catch (error) {
-        setError(error);
+        setError(error.message);
       } finally {
         setIsloading(false);
       }
@@ -61,15 +61,17 @@ const TweetCardList = () => {
               />
             ))}
           </CardSet>
-          <ButtonContainer>
-            {hasMoreTweets ? (
-              <Button type="button" onClick={loadMore}>
-                {isloading ? 'Loading...' : 'Load More'}
-              </Button>
-            ) : (
-              <p>No tweets available</p>
-            )}
-          </ButtonContainer>
+          {!error && (
+            <ButtonContainer>
+              {hasMoreTweets ? (
+                <Button type="button" onClick={loadMore}>
+                  {isloading ? 'Loading...' : 'Load More'}
+                </Button>
+              ) : (
+                <p>No tweets available</p>
+              )}
+            </ButtonContainer>
+          )}
         </>
       )}
     </>
