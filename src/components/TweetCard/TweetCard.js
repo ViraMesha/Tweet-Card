@@ -25,7 +25,6 @@ const TweetCard = ({ id, avatar, followers, tweets }) => {
   }, [id]);
 
   const handleFollow = async () => {
-    // Update the follower count on the server
     if (isFollowing) {
       setFollowerCount(prevCount => prevCount - 1);
       await updateFollowerCount(id, followerCount - 1);
@@ -34,7 +33,6 @@ const TweetCard = ({ id, avatar, followers, tweets }) => {
       await updateFollowerCount(id, followerCount + 1);
     }
 
-    // Update the button state and save it to local storage
     setIsFollowing(prevFollowing => !prevFollowing);
     localStorage.setItem(
       `tweetCardButtonState_${id}`,
