@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import TweetCard from 'components/TweetCard/TweetCard';
 import { Button, ButtonContainer, CardSet } from './TweetCardList.styled';
 import { fetchTweets } from 'api-services/api';
@@ -11,8 +10,7 @@ const TweetCardList = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [isInitialRender, setIsInitialRender] = useState(true);
-  const location = useLocation();
-  const locRef = useRef(location.state?.from ?? '/');
+  const [hasMoreTweets, setHasMoreTweets] = useState(true);
 
   useEffect(() => {
     async function getTweets() {
@@ -20,19 +18,23 @@ const TweetCardList = () => {
         setIsloading(true);
         setError(null);
         const data = await fetchTweets(page);
-        setTweets(prevTweets => [...prevTweets, ...data]);
+        if (data.length === 0) {
+          setHasMoreTweets(false); // No more tweets available
+        } else {
+          setTweets(prevTweets => [...prevTweets, ...data]);
+        }
       } catch (error) {
         setError(error);
       } finally {
         setIsloading(false);
       }
     }
-    if (!isInitialRender) {
+    if (!isInitialRender && hasMoreTweets) {
       getTweets();
     } else {
       setIsInitialRender(false);
     }
-  }, [page, isInitialRender]);
+  }, [page, isInitialRender, hasMoreTweets]);
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
@@ -41,7 +43,7 @@ const TweetCardList = () => {
   return (
     <>
       <div>
-        <BackLink to={locRef.current}>Go back</BackLink>
+        <BackLink to="/">Go back</BackLink>
       </div>
       {isloading && <b>Is loading...</b>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -60,9 +62,13 @@ const TweetCardList = () => {
             ))}
           </CardSet>
           <ButtonContainer>
-            <Button type="button" onClick={loadMore}>
-              Load More
-            </Button>
+            {hasMoreTweets ? (
+              <Button type="button" onClick={loadMore}>
+                {isloading ? 'Loading...' : 'Load More'}
+              </Button>
+            ) : (
+              <p>No tweets available</p>
+            )}
           </ButtonContainer>
         </>
       )}
