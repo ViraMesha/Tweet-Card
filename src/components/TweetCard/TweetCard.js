@@ -13,7 +13,7 @@ import picture from '../../img/picture.png';
 import { updateFollowerCount } from 'api-services/api';
 import { formatFollowerCount } from 'helpers/formatFollowerCount';
 
-const TweetCard = ({ id, avatar, user, followers, tweets }) => {
+const TweetCard = ({ id, avatar, followers, tweets }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followerCount, setFollowerCount] = useState(followers);
 
