@@ -38,14 +38,14 @@ the UI to enhance readability.
 
 ## Installation
 
-Clone the repository: git clone https://github.com/ViraMesha/tweet-card.git
-Navigate to the project directory: cd tweet-card Install dependencies: npm
-install
+1. Clone the repository: git clone https://github.com/ViraMesha/tweet-card.git
+2. Navigate to the project directory: cd tweet-card 
+3. Install dependencies: npm install or npm i
 
 ## Usage
 
-Start the development server: npm start Open your browser and visit
-http://localhost:3000 to view the project.
+1. Start the development server: npm start 
+2. Open your browser and visit http://localhost:3000 to view the project.
 
 ## Contributing
 
