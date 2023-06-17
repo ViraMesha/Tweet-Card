@@ -9,7 +9,11 @@ export const HomePageWrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
 `;
 
 export const Heading = styled.h1`
@@ -44,4 +48,10 @@ export const Link = styled(NavLink)`
     background-color: var(--blue-cl);
     color: var(--light-text-cl);
   }
+`;
+
+export const ImageWrapper = styled.div`
+  flex-shrink: 0;
+  width: 50%;
+  margin-left: 30px;
 `;
