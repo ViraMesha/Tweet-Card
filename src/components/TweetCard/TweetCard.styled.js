@@ -5,13 +5,8 @@ export const CardWrapper = styled.li`
   max-width: 380px;
   max-height: 460px;
   padding: 28px 36px 36px;
-  background: linear-gradient(
-    114.99deg,
-    #471ca9 -0.99%,
-    #5736a3 54.28%,
-    #4b2a99 78.99%
-  );
-  box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+  background: var(--gradient);
+  box-shadow: var(--box-shadow);
   border-radius: 20px;
 `;
 
@@ -28,9 +23,8 @@ export const HorizontalLine = styled.div`
   transform: translateY(-50%);
   width: 100%;
   height: 8px;
-  background-color: #ebd8ff;
-  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
-    inset 0px -1.71846px 3.43693px #ae7be3, inset 0px 3.43693px 2.5777px #fbf8ff;
+  background-color: var(--light-text-cl);
+  box-shadow: var(--horizontal-line-box-shadow);
 `;
 
 export const Icon = styled.img`
@@ -54,7 +48,7 @@ export const Text = styled.p`
   line-height: 24px;
   text-transform: uppercase;
   text-align: center;
-  color: #ebd8ff;
+  color: var(--light-text-cl);
 `;
 
 export const Button = styled.button`
@@ -70,14 +64,16 @@ export const Button = styled.button`
   font-size: 18px;
   line-height: 22px;
   text-transform: uppercase;
-  color: #373737;
+  color: var(--black-text-cl);
   cursor: pointer;
+
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition);
 
   &:hover {
     background-color: ${({ isFollowing }) =>
       isFollowing ? '#2C6274' : '#4b2a99'};
-    color: #ebd8ff;
-    border-color: #ebd8ff;
-    box-shadow: 0px 0px 0px 3px rgba(235, 216, 255, 0.5);
+    color: var(--light-text-cl);
+    border-color: var(--light-text-cl);
   }
 `;

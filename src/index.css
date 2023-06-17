@@ -1,6 +1,24 @@
 @import-normalize; /* bring in normalize.css styles */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 
+:root {
+  --light-text-cl: #ebd8ff;
+  --black-text-cl: #373737;
+  --green-bg-cl: #5cd3a8;
+  --blue-cl: #4b2a99;
+  --purple-cl: #b0218c;
+  --gradient: linear-gradient(
+    114.99deg,
+    #471ca9 -0.99%,
+    #5736a3 54.28%,
+    #4b2a99 78.99%
+  );
+  --box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
+  --horizontal-line-box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
+    inset 0px -1.71846px 3.43693px #ae7be3, inset 0px 3.43693px 2.5777px #fbf8ff;
+  --transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;

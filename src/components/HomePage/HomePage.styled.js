@@ -14,13 +14,13 @@ export const ContentWrapper = styled.div`
 
 export const Heading = styled.h1`
   font-size: 36px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 20px;
 `;
 
 export const SubHeading = styled.h2`
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 10px;
 `;
 
@@ -35,11 +35,13 @@ export const Link = styled(NavLink)`
   border-radius: 8px;
   font-weight: 600;
   font-size: 22px;
-  color: #373737;
+  color: var(--black-text-cl);
+  background-color: var(--green-bg-cl);
   text-decoration: none;
+  transition: color var(--transition), background-color var(--transition);
 
   &:hover {
-    background-color: #4b2a99;
-    color: #ebd8ff;
+    background-color: var(--blue-cl);
+    color: var(--light-text-cl);
   }
 `;
