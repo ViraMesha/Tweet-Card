@@ -19,21 +19,6 @@ const TweetCardList = () => {
   const [hasMoreTweets, setHasMoreTweets] = useState(true);
   const [filterOption, setFilterOption] = useState('all');
 
-  const handleFilterChange = event => {
-    setFilterOption(event.target.value);
-  };
-
-  const filteredTweets = tweets.filter(tweet => {
-    if (filterOption === 'all') {
-      return true;
-    } else if (filterOption === 'follow') {
-      return !tweet.isFollowing;
-    } else if (filterOption === 'followings') {
-      return tweet.isFollowing;
-    }
-    return false;
-  });
-
   useEffect(() => {
     async function getTweets() {
       try {
@@ -61,6 +46,21 @@ const TweetCardList = () => {
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
   };
+
+  const handleFilterChange = event => {
+    setFilterOption(event.target.value);
+  };
+
+  const filteredTweets = tweets.filter(tweet => {
+    if (filterOption === 'all') {
+      return true;
+    } else if (filterOption === 'follow') {
+      return !tweet.isFollowing;
+    } else if (filterOption === 'followings') {
+      return tweet.isFollowing;
+    }
+    return false;
+  });
 
   return (
     <>
