@@ -86,7 +86,7 @@ const TweetCardList = () => {
               />
             ))}
           </CardSet>
-          {!error && (
+          {!error && filteredTweets.length >= 6 && (
             <ButtonContainer>
               {hasMoreTweets ? (
                 <Button type="button" onClick={loadMore}>
